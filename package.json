@@ -1,0 +1,23 @@
+{
+  "name": "yelp-camp",
+  "version": "1.0.0",
+  "description": "Yelp Camp",
+  "main": "app.js",
+  "scripts": {
+    "test": "Chirag Krishnaswamy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiragKr/yelp-camp.git"
+  },
+  "author": "ChiragKr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiragKr/yelp-camp/issues"
+  },
+  "homepage": "https://github.com/ChiragKr/yelp-camp#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  }
+}
