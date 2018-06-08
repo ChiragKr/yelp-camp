@@ -4,7 +4,11 @@ var bodyParser = require("body-parser");
 var mongoose   = require("mongoose");
 var Campground = require("./models/campground.js");
 var Comment    = require("./models/comment.js");
+var User       = require("./models/user.js");
 var seedDB     = require("./seeds.js");
+var passport          = require("passport"),
+LocalStrategy         = require("passport-local"),
+passportLocalMongoose = require("passport-local-mongoose");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
