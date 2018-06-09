@@ -28,6 +28,14 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//app.use(middleware)
+app.use(function(req, res, next){
+    //adds req.user in (all) the request(s)
+    //as the variable name "currentUser"
+    res.locals.currentUser = req.user;
+    next();
+});
+
 //=======================================================
 //                  CAMPGROUND ROUTES
 //=======================================================
@@ -44,7 +52,8 @@ app.get("/campgrounds", function(req, res){
        if(err){
            console.log(err);
        } else {
-            res.render("campgrounds/index", {campgrounds : allCampgrounds});
+            //using middleware we didn't have to send "req.user" in every route like we did below
+            res.render("campgrounds/index", {campgrounds : allCampgrounds, currentUser: req.user});
        }
     });
     // res.render("campgrounds", {campgrounds : campgrounds});
