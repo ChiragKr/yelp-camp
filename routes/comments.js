@@ -18,7 +18,7 @@ router.get("/new", isLoggedIn, function(req, res) {
     });
 });
 
-// 'POST' ROUTE (comments)
+// 'CREATE' ROUTE (comments)
 router.post("/", isLoggedIn, function(req, res){
     // look up campground using id
     Campground.findById(req.params.id, function(err, campground){
@@ -42,6 +42,40 @@ router.post("/", isLoggedIn, function(req, res){
                     res.redirect("/campgrounds/"+campground._id);
                 }
             });
+        }
+    });
+});
+
+// 'EDIT' ROUTE (comments)
+router.get("/:comment_id/edit", function(req, res) {
+    Comment.findById(req.params.comment_id, function(err, foundComment){
+        if(err){
+            res.redirect("back");
+        } else {
+            res.render("comments/edit",{campground_id : req.params.id, comment: foundComment});
+        }
+    })
+});
+
+// 'UPDATE' ROUTE (comments)
+router.put("/:comment_id", function(req, res){
+    
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
+        if(err){
+            res.redirect("back");
+        } else {
+            res.redirect("/campgrounds/"+ req.params.id);
+        }
+    });
+});
+
+// 'DESTROY' ROUTE (comments)
+router.delete("/:comment_id", function(req, res){
+    Comment.findByIdAndRemove(req.params.comment_id, function(err){
+        if(err){
+            res.redirect("/campgrounds/"+ req.params.id);
+        } else {
+            res.redirect("/campgrounds/"+ req.params.id);
         }
     });
 });
