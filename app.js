@@ -6,6 +6,7 @@ var Campground = require("./models/campground.js");
 var Comment    = require("./models/comment.js");
 var User       = require("./models/user.js");
 var seedDB     = require("./seeds.js");
+var methodOverride    = require("method-override");
 var passport          = require("passport"),
 LocalStrategy         = require("passport-local"),
 passportLocalMongoose = require("passport-local-mongoose");
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 // seedDB();
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
