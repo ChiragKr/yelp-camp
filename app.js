@@ -18,7 +18,7 @@ var campgroundRoutes = require("./routes/campgrounds.js"),
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-seedDB();
+// seedDB();
 app.use(express.static(__dirname + "/public"));
 
 // PASSPORT CONFIG
